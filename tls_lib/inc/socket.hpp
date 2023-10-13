@@ -1,9 +1,12 @@
+#ifndef SOCKET_HPP
+#define SOCKET_HPP
+
 #include <iostream>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
 
-namespace lib_socket
+namespace tls_connection
 {
     class Client
     {
@@ -24,6 +27,8 @@ namespace lib_socket
     public:
         Socket(int port = 5026);
         ~Socket();
-        lib_socket::Client AcceptConnection();
+        Client AcceptConnection();
     };
 }
+
+#endif /* SOCKET_HPP */

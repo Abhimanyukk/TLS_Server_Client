@@ -1,6 +1,6 @@
 #include "socket.hpp"
 
-lib_socket::Socket::Socket(int port)
+tls_connection::Socket::Socket(int port)
 {
     std::cout << "Server starting..." << std::endl;
 
@@ -29,12 +29,12 @@ lib_socket::Socket::Socket(int port)
     std::cout << "Socket created" << std::endl;
 }
 
-lib_socket::Socket::~Socket()
+tls_connection::Socket::~Socket()
 {
     std::cout << "Server destructor" << std::endl;
 }
 
-lib_socket::Client lib_socket::Socket::AcceptConnection()
+tls_connection::Client tls_connection::Socket::AcceptConnection()
 {
     struct sockaddr_in client_addr;
     socklen_t client_len = sizeof(client_addr);
@@ -50,18 +50,18 @@ lib_socket::Client lib_socket::Socket::AcceptConnection()
     return client;
 }
 
-lib_socket::Client::Client(int conn)
+tls_connection::Client::Client(int conn)
 {
     this->fd = conn;
     std::cout << "Client connected" << std::endl;
 }
 
-size_t lib_socket::Client::Read(char *pData)
+size_t tls_connection::Client::Read(char *pData)
 {
     return read(this->fd, pData, 1024);
 }
 
-size_t lib_socket::Client::Write(const char *pData, size_t len)
+size_t tls_connection::Client::Write(const char *pData, size_t len)
 {
     return write(this->fd, pData, len);
 }
